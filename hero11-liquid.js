@@ -213,9 +213,9 @@ class LiquidGradientEffect {
       glyphDither: this.config.showGlyphDither
     };
 
-    this.container = document.getElementById('webgl-background');
+    this.container = document.getElementById('webgl-background-11');
     if (!this.container) {
-      console.error('Container #webgl-background not found!');
+      console.error('Container #webgl-background-11 not found!');
       return;
     }
 
@@ -909,10 +909,10 @@ class LiquidGradientEffect {
   createControls() {
     const panel = document.createElement('div');
     panel.style.cssText = `
-      position: fixed; top: 120px; right: 20px; z-index: 10000;
+      position: absolute; top: 20px; right: 20px; z-index: 100;
       background: rgba(255,255,255,0.95); padding: 16px; border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: system-ui, sans-serif;
-      font-size: 13px; max-width: 280px; max-height: calc(100vh - 140px); overflow-y: auto;
+      font-size: 13px; max-width: 280px; max-height: 70vh; overflow-y: auto;
     `;
     let guiVisible = false;
     panel.style.display = 'none';
@@ -921,7 +921,7 @@ class LiquidGradientEffect {
     toggleGuiButton.type = 'button';
     toggleGuiButton.textContent = 'Show GUI';
     toggleGuiButton.style.cssText = `
-      position: fixed; top: 84px; right: 20px; z-index: 10001;
+      position: absolute; top: 0; right: 0; z-index: 101;
       padding: 8px 10px; border: 1px solid #bbb; border-radius: 6px;
       background: rgba(255,255,255,0.95); color: #222; cursor: pointer;
       font: 600 12px system-ui, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
@@ -1300,8 +1300,28 @@ class LiquidGradientEffect {
     buttonsDiv.appendChild(downloadButton);
     panel.appendChild(buttonsDiv);
 
-    document.body.appendChild(toggleGuiButton);
-    document.body.appendChild(panel);
+    const hero11Section = document.querySelector('.hero-section.home-section-1');
+    if (hero11Section) {
+      hero11Section.style.position = 'relative';
+      // Create a container for the GUI elements if not present
+      let guiContainer = hero11Section.querySelector('.hero11-webgl-gui-container');
+      if (!guiContainer) {
+        guiContainer = document.createElement('div');
+        guiContainer.className = 'hero11-webgl-gui-container';
+        guiContainer.style.position = 'absolute';
+        guiContainer.style.top = '0';
+        guiContainer.style.right = '0';
+        guiContainer.style.width = 'auto';
+        guiContainer.style.height = 'auto';
+        guiContainer.style.zIndex = '100';
+        hero11Section.appendChild(guiContainer);
+      }
+      guiContainer.appendChild(toggleGuiButton);
+      guiContainer.appendChild(panel);
+    } else {
+      document.body.appendChild(toggleGuiButton);
+      document.body.appendChild(panel);
+    }
   }
 
   saveSettings() {

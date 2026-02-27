@@ -9,9 +9,13 @@ class LiquidGradientEffect {
     console.log('Initializing LiquidGradientEffect...');
     this.storageKey = 'hero10-liquid-settings';
     this.settingsVersion = 2;
-    
+
     // ===== CONFIGURATION =====
-    this.config = this.loadSettings() || {
+    // Remove any previously saved settings
+    if (window && window.localStorage) {
+      window.localStorage.removeItem(this.storageKey);
+    }
+    this.config = {
       "warpAmp": 0.3,
       "sharpness": 10,
       "speed": 0.8,
@@ -43,38 +47,38 @@ class LiquidGradientEffect {
       "white1SpeedMulY": 2.33,
       "white1PhaseX": 1.007,
       "white1PhaseY": 1.217,
-      "blueZoneCenterX": 0.53,
+      "blueZoneCenterX": 1,
       "blueZoneCenterY": 0,
-      "blueZoneHalfWidth": 0.47,
+      "blueZoneHalfWidth": 0.2,
       "blueZoneHalfHeight": 0.56,
-      "blueSpeedMulX": 1,
-      "blueSpeedMulY": 1,
-      "bluePhaseX": 3.387,
-      "bluePhaseY": 0.667,
-      "tealZoneCenterX": 0.53,
+        blueZoneCenterX: 1.5,
+        blueZoneCenterY: 0.0,
+        blueZoneHalfWidth: 0.1,
+        blueZoneHalfHeight: 0.56,
+      "tealZoneCenterX": 1,
       "tealZoneCenterY": 0,
-      "tealZoneHalfWidth": 0.47,
+      "tealZoneHalfWidth": 0.2,
       "tealZoneHalfHeight": 0.58,
-      "tealSpeedMulX": 1,
-      "tealSpeedMulY": 1,
-      "tealPhaseX": 1.317,
-      "tealPhaseY": -0.643,
-      "purpleZoneCenterX": 0.53,
+        tealZoneCenterX: 1.5,
+        tealZoneCenterY: 0.0,
+        tealZoneHalfWidth: 0.1,
+        tealZoneHalfHeight: 0.58,
+      "purpleZoneCenterX": 1,
       "purpleZoneCenterY": 0,
-      "purpleZoneHalfWidth": 0.47,
+      "purpleZoneHalfWidth": 0.2,
       "purpleZoneHalfHeight": 0.58,
-      "purpleSpeedMulX": 1,
-      "purpleSpeedMulY": 1,
-      "purplePhaseX": 0.057,
-      "purplePhaseY": -0.273,
-      "pinkZoneCenterX": 0.53,
+        purpleZoneCenterX: 1.5,
+        purpleZoneCenterY: 0.0,
+        purpleZoneHalfWidth: 0.1,
+        purpleZoneHalfHeight: 0.58,
+      "pinkZoneCenterX": 1,
       "pinkZoneCenterY": 0,
-      "pinkZoneHalfWidth": 0.47,
+      "pinkZoneHalfWidth": 0.2,
       "pinkZoneHalfHeight": 0.59,
-      "pinkSpeedMulX": 1,
-      "pinkSpeedMulY": 1,
-      "pinkPhaseX": -0.523,
-      "pinkPhaseY": 2.097,
+        pinkZoneCenterX: 1.5,
+        pinkZoneCenterY: 0.0,
+        pinkZoneHalfWidth: 0.1,
+        pinkZoneHalfHeight: 0.59,
       "blue2ZoneCenterX": -1.5,
       "blue2ZoneCenterY": -0.03,
       "blue2ZoneHalfWidth": 0.12,
@@ -130,11 +134,11 @@ class LiquidGradientEffect {
       "pinkInfluence": 1,
       "color2GroupInfluence": 0.15,
       "whiteGroupInfluence": 4,
-      "colorGroupInfluence": 2.7,
+      "colorGroupInfluence": 0.05,
       "colorWhite": {
-        "r": 0.9098039215686274,
-        "g": 0.9098039215686274,
-        "b": 0.9098039215686274
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "colorBlue": {
         "r": 0.196,
@@ -224,9 +228,9 @@ class LiquidGradientEffect {
       glyphDither: this.config.showGlyphDither
     };
 
-    this.container = document.getElementById('webgl-background');
+    this.container = document.getElementById('webgl-background-10');
     if (!this.container) {
-      console.error('Container #webgl-background not found!');
+      console.error('Container #webgl-background-10 not found!');
       return;
     }
 
@@ -919,24 +923,24 @@ class LiquidGradientEffect {
 
   createControls() {
     const panel = document.createElement('div');
-    panel.style.cssText = `
-      position: fixed; top: 120px; right: 20px; z-index: 10000;
-      background: rgba(255,255,255,0.95); padding: 16px; border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: system-ui, sans-serif;
-      font-size: 13px; max-width: 280px; max-height: calc(100vh - 140px); overflow-y: auto;
-    `;
+      panel.style.cssText = `
+        position: absolute; top: 20px; right: 20px; z-index: 10000;
+        background: rgba(255,255,255,0.95); padding: 16px; border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: system-ui, sans-serif;
+        font-size: 13px; max-width: 280px; max-height: calc(100vh - 40px); overflow-y: auto;
+      `;
     let guiVisible = false;
     panel.style.display = 'none';
 
     const toggleGuiButton = document.createElement('button');
     toggleGuiButton.type = 'button';
     toggleGuiButton.textContent = 'Show GUI';
-    toggleGuiButton.style.cssText = `
-      position: fixed; top: 84px; right: 20px; z-index: 10001;
-      padding: 8px 10px; border: 1px solid #bbb; border-radius: 6px;
-      background: rgba(255,255,255,0.95); color: #222; cursor: pointer;
-      font: 600 12px system-ui, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    `;
+      toggleGuiButton.style.cssText = `
+        position: absolute; top: 20px; right: 20px; z-index: 10001;
+        padding: 8px 10px; border: 1px solid #bbb; border-radius: 6px;
+        background: rgba(255,255,255,0.95); color: #222; cursor: pointer;
+        font: 600 12px system-ui, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      `;
     toggleGuiButton.onclick = () => {
       guiVisible = !guiVisible;
       panel.style.display = guiVisible ? 'block' : 'none';
@@ -1346,8 +1350,15 @@ class LiquidGradientEffect {
     buttonsDiv.appendChild(downloadButton);
     panel.appendChild(buttonsDiv);
 
-    document.body.appendChild(toggleGuiButton);
-    document.body.appendChild(panel);
+    const hero10Section = document.querySelector('.hero-section.home-section-2');
+    if (hero10Section) {
+      hero10Section.style.position = 'relative';
+      hero10Section.appendChild(toggleGuiButton);
+      hero10Section.appendChild(panel);
+    } else {
+      document.body.appendChild(toggleGuiButton);
+      document.body.appendChild(panel);
+    }
   }
 
   saveSettings() {

@@ -1,3 +1,73 @@
+.blank-section {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+/* Bottom white gradient for hero 10 (matches hero 11) */
+.hero10-bottom-gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    pointer-events: none;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+/* GUI for hero 11 bottom gradient */
+.hero-section.hero-11 {
+    position: relative;
+}
+.hero11-gradient-gui {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 30;
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    padding: 14px 18px 10px 18px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    min-width: 210px;
+    max-width: 260px;
+    user-select: none;
+}
+.hero-section.hero-11 { position: relative; }
+/* Bottom white gradient for hero 11 */
+.hero11-bottom-gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    pointer-events: none;
+    z-index: 10;
+    /* Ensure hero-container is above the gradient in hero-11 only */
+    .hero-section.hero-11 .hero-container {
+        position: relative;
+        z-index: 20;
+    }
+    background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+ .hero-section.home-section-1 {
+    position: relative;
+}
+/* Remove gap between home-section-1 and home-section-2 sections */
+ .hero-section.home-section-1 {
+    margin-bottom: 0 !important;
+}
+ .hero-section.home-section-2 {
+    margin-top: 0 !important;
+}
 /* ============================================
    CSS CUSTOM PROPERTIES (DESIGN TOKENS)
    ============================================ */
@@ -85,44 +155,6 @@ body {
     background-color: var(--color-white);
 }
 
-/* ============================================
-   LOADING SCREEN
-   ============================================ */
-
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.3s ease-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 14px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-/* Pause animations while loading */
-body[data-content-loaded="false"] .hero-title-word,
-body[data-content-loaded="false"] .hero-subtitle,
-body[data-content-loaded="false"] .hero-buttons,
-body[data-content-loaded="false"] .hero-image-right {
-    animation-play-state: paused !important;
-}
-
-/* Resume animations after loading */
-body[data-content-loaded="true"] .hero-title-word,
-body[data-content-loaded="true"] .hero-subtitle,
-body[data-content-loaded="true"] .hero-buttons,
-body[data-content-loaded="true"] .hero-image-right {
-    animation-play-state: running !important;
-}
 
 @keyframes fluidWave {
     0% {
@@ -284,6 +316,8 @@ body[data-content-loaded="true"] .hero-image-right {
     opacity: 0;
     animation: fadeInUp 0.8s ease-out forwards;
     overflow: visible;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 .collage-image {
@@ -304,7 +338,7 @@ body[data-content-loaded="true"] .hero-image-right {
     width: 141px;
     height: 122px;
     left: 153px;
-    top: 100px;
+    top: 0px;
     z-index: 5;
 }
 
@@ -312,7 +346,7 @@ body[data-content-loaded="true"] .hero-image-right {
     width: 314px;
     height: 348px;
     left: 306px;
-    top: 100px;
+    top: 0px;
     z-index: 5;
 }
 
@@ -320,7 +354,7 @@ body[data-content-loaded="true"] .hero-image-right {
     width: 211px;
     height: 31px;
     left: 409px;
-    top: 460px;
+    top: 360px;
     z-index: 5;
 }
 
@@ -328,7 +362,7 @@ body[data-content-loaded="true"] .hero-image-right {
     width: 158px;
     height: 170px;
     left: 239px;
-    top: 455px;
+    top: 355px;
     z-index: 10;
 }
 
@@ -336,7 +370,7 @@ body[data-content-loaded="true"] .hero-image-right {
     width: 287px;
     height: 346px;
     left: 7px;
-    top: 234px;
+    top: 134px;
     z-index: 1;
 }
 
@@ -1394,8 +1428,8 @@ p {
 }
 
 /* Hero 10 / 11 - WebGL-only background with light fallback */
-.hero-10,
-.hero-11 {
+ .home-section-2,
+ .home-section-1 {
     position: relative;
     overflow: hidden;
     animation: none !important;
@@ -1428,11 +1462,9 @@ p {
   background-size: 200px 200px;
 }
 
-.hero-10 .grain-overlay,
-.hero-11 .grain-overlay {
+ .home-section-2 .grain-overlay,
+ .home-section-1 .grain-overlay {
   display: none;
-}
-
     position: relative;
     z-index: 10;
 }

@@ -1,0 +1,18 @@
+{
+  "name": "mtm-website-3-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix mtm-website-3 run dev",
+    "build": "npm --prefix mtm-website-3 run build",
+    "preview": "npm --prefix mtm-website-3 run preview"
+  },
+  "dependencies": {
+    "@astrojs/db": "^0.19.0",
+    "@shadcn/ui": "^0.0.4",
+    "@tailwindcss/vite": "^4.2.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.6",
+    "shadcn": "^3.8.5",
+    "tailwindcss": "^4.2.1"
+  }
+}

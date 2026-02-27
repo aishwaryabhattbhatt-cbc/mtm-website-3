@@ -16,22 +16,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Main Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <!-- Logo -->
+            <!-- MTM Logo -->
             <div class="navbar-logo">
-                <img src="assets/images/mtm-logo.svg" alt="MTM - Media Technology Monitor" class="logo-image">
+                <img src="/images/mtm-logo.svg" alt="MTM - Media Technology Monitor" class="logo-image">
             </div>
 
-            <!-- Hamburger Menu (Mobile) -->
+            <!-- Hamburger Menu for Mobile -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
 
-            <!-- Navigation Menu -->
+            <!-- Navigation Menu Links -->
             <div class="navbar-menu" id="navbar-menu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -48,9 +48,9 @@
                     </li>
                 </ul>
 
-                <!-- Action Buttons -->
+                <!-- Action Buttons and Language Selector -->
                 <div class="navbar-actions">
-                    <!-- Language Selector -->
+                    <!-- Language Selector (FR/EN) -->
                     <div class="navbar-language">
                         <button class="lang-btn" data-lang="fr">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,15 +73,15 @@
         </div>
     </nav>
 
-    <!-- Hero Section 10 with WebGL Noise Warp Background -->
-    <section class="hero-section hero-11">
-        <!-- WebGL Noise Warp Canvas -->
-        <div id="webgl-background" class="webgl-background"></div>
+    <!-- Home Section 1: Hero with WebGL Noise Warp Background -->
+    <section class="hero-section home-section-1">
+        <!-- WebGL Noise Warp Canvas (Three.js) -->
+        <div id="webgl-background-11" class="webgl-background"></div>
         
-        <!-- Grain Overlay -->
-        <div class="grain-overlay"></div>
+        <!-- Grain Overlay for Texture -->
+        <div class="grain-overlay-11 grain-overlay"></div>
         
-        <!-- content -->
+        <!-- Hero Content and Collage -->
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text-blob" aria-hidden="true"></div>
@@ -99,12 +99,19 @@
                 <img src="assets/svg/4.svg" alt="Collage Image 4" class="collage-image collage-image-4">
                 <img src="assets/svg/5.svg" alt="Collage Image 5" class="collage-image collage-image-5">
             </div>
-        </div> -->
+        </div>
+
+        <!-- Bottom White Gradient Overlay -->
+        <div class="hero11-bottom-gradient"></div>
+        <!-- Gradient GUI removed as requested -->
     </section>
+
+    <!-- Gap between Home Section 1 and Home Section 2 -->
+    <div id="hero-gap" style="height:10vh; width:100%;"></div>
 
     <script src="script.js"></script>
     
-    <!-- Three.js importmap for ES6 module imports -->
+    <!-- Three.js Import Map for ES6 Modules -->
     <script type="importmap">
     {
       "imports": {
@@ -114,5 +121,47 @@
     </script>
     
     <script type="module" src="hero11-liquid.js"></script>
+
+        <!-- Home Section 2: Hero with WebGL Noise Warp Background -->
+    <section class="hero-section home-section-2">
+        <!-- WebGL Noise Warp Canvas (Three.js) -->
+        <div id="webgl-background-10" class="webgl-background"></div>
+        
+        <!-- Grain Overlay for Texture -->
+        <div class="grain-overlay-10 grain-overlay"></div>
+
+        <!-- Top White Gradient Overlay -->
+        <div class="hero10-top-gradient"></div>
+
+        <!-- Bottom White Gradient Overlay -->
+        <div class="hero10-bottom-gradient"></div>
+
+        <!-- Top Gradient Settings GUI (Hidden by Default) -->
+        <div class="hero10-gradient-gui" style="display:none;">
+            <label style="display:block; margin-bottom:6px; color:#333; font-size:13px; font-weight:600;">Top Gradient Settings</label>
+            <label style="font-size:12px; color:#444;">Height (% of viewport):
+                <input type="range" min="5" max="30" value="30" id="gradientHeightSlider10" style="vertical-align:middle;">
+                <span id="gradientHeightValue10">30</span>vh
+            </label>
+            <br>
+            <label style="font-size:12px; color:#444;">Opacity (0-1):
+                <input type="range" min="0" max="1" step="0.01" value="1" id="gradientOpacitySlider10" style="vertical-align:middle;">
+                <span id="gradientOpacityValue10">1</span>
+            </label>
+            <br>
+            <label style="font-size:12px; color:#444;">Intensity (fade):
+                <input type="range" min="0.1" max="2" step="0.01" value="1" id="gradientIntensitySlider10" style="vertical-align:middle;">
+                <span id="gradientIntensityValue10">1</span>
+            </label>
+        </div>
+    </section>
+    <!-- Gap between Home Section 1 and Home Section 2 -->
+    <div id="hero-gap" style="height:10vh; width:100%;"></div>
+    <!-- Blank Section: Full Screen Height and Width -->
+    <section class="blank-section" style="width:100vw; height:100vh; background:#fff;"></section>
+
+    
+    <script src="script.js"></script>
+    <script type="module" src="hero10-liquid.js"></script>
 </body>
 </html>
